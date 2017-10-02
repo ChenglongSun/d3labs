@@ -14,7 +14,7 @@ class Solution {
         
         while (!queue.isEmpty()) {
             String str = queue.poll();
-            if (str != null) {
+            if (str != null) {//
                 for (int i = 0; i < str.length(); i++) {
                     char[] chars = str.toCharArray();
                     for (char j = 'a'; j <= 'z'; j++) {
