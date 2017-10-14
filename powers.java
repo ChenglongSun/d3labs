@@ -1,5 +1,7 @@
 package com.test1;
 import java.util.*;
+
+
 public class Solution {
 	public static void main(String[] args) {
         int nums[] = {1,2,3,2,2,5};
