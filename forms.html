@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>register</title>
+</head>
+<body>
+<h1>Register</h1>
+
+<form>
+	<label for="first">First Name</label>
+	<input name = "first" id = "first" type="text" placeholder="First Name" required>
+	<label for="last">Lasst Name</label>
+	<input name = "last" id = "last"type="text" placeholder="Last Name" required>
+
+	<div>
+		<label for = "male">Male:</label>
+		<input id = "male" name = "gender" type="radio" value = "male">
+		<label for = "female">Female:</label>
+		<input id = "female" name = "gender" type="radio" value = "female">
+		<label for = "other">Other:</label>
+		<input id = "other" name = "gender" type="radio" value = "other">
+	</div>
+
+	<div>
+		<label>
+			Email:
+			<input type="email" placeholder="example@email.com" name="email" required>
+		</label>
+		
+		<label>
+			Password:
+			<input type="password" placeholder="password" name="password" pattern=".{5, 10}" title="required 5 to 10 characters" required>
+		</label>
+		
+	</div>
+
+	<div>
+		<label>
+			Birthday:
+			<select name = "month">
+				<option>Month</option>
+				<option>Jan</option>
+				<option>Feb</option>
+			</select>
+			<select name = "day">
+				<option>Day</option>
+				<option>3</option>
+				<option>5</option>
+			</select>
+			<select name = "year">
+				<option>Year</option>
+				<option>2008</option>
+				<option>2010</option>
+			</select>
+		</label>
+		
+	</div>
+
+	<div>
+		<input type="checkbox" id="agreed name = "agreed">
+		<label for = "agreed"> I agree the terms</label>
+	</div>
+
+	<input type="submit">
+</form>
+</body>
+</html>
