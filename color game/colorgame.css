@@ -18,3 +18,14 @@ body {
 h1 {
 	color: white;
 }
+
+#message {
+	color: black;
+}
+
+#stripe {
+	background-color: white;
+	text-align: center;
+	height: 30px;
+	color: black;
+}
