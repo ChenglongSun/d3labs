@@ -10,7 +10,6 @@ class Solution {
                 int p2 = i + j + 1;
                 sum += res[p2];
 
-                
                 res[p1] += sum / 10;
                 res[p2] = (sum) % 10;
             }
