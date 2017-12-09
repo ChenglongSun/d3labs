@@ -12,6 +12,7 @@ class Solution {
 
                 res[p1] += sum / 10;
                 res[p2] = (sum) % 10;
+                
             }
         }
         StringBuilder sb = new StringBuilder();
