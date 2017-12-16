@@ -14,7 +14,6 @@ class Solution {
                 res[p2] = (sum) % 10;
             }
         }
-        
         StringBuilder sb = new StringBuilder();
         for(int p : res) if(!(sb.length() == 0 && p == 0)) sb.append(p);
         return sb.length() == 0 ? "0" : sb.toString();
