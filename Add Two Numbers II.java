@@ -9,7 +9,6 @@ class Solution {
         }
         while (l2 != null) {
             s2.push(l2.val);
-            
             l2 = l2.next;
         }
         int sum = 0;
