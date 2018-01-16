@@ -1,11 +1,12 @@
 class Solution {
-    public boolean isPalindrome(int x) {
-        if (x < 0 || (x != 0 && x % 10 == 0)) return false;
-        int rev = 0;
-        while (x > rev) {
-            rev = rev * 10 + x % 10;
-            x /= 10;
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : s.toCharArray()) {
+            if (c == '(') stack.push(')');
+            else if (c == '{') stack.push('}');
+            else if (c == '[') stack.push(']');
+            else if (stack.isEmpty() || c != stack.pop()) return false;
         }
-        return (rev == x || x == rev / 10);
+        return stack.isEmpty();
     }
 }
