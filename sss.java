@@ -1,19 +1,11 @@
 class Solution {
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        ListNode dummy = new ListNode(0);
-        ListNode head = dummy;
-        while (l1 != null && l2 != null) {
-            if (l1.val <= l2.val) {
-                head.next = l1;
-                l1 = l1.next;
-            } else {
-                head.next = l2;
-                l2 = l2.next;
+    public int strStr(String haystack, String needle) {
+        for (int i = 0; ;i++) {
+            for (int j = 0; ; j++) {
+                if (j == needle.length()) return i;
+                if (i + j == haystack.length()) return -1;
+                if (needle.charAt(j) != haystack.charAt(i + j)) break;
             }
-            head = head.next;
         }
-        if (l1 != null) head.next = l1;
-        if (l2 != null) head.next = l2;
-        return dummy.next;
     }
 }
