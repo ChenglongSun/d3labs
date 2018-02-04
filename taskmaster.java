@@ -29,6 +29,5 @@ public class TaskMaster {
             if (tasks[pos] == pos) count--;
         }
         return count;
-
     }
 }
