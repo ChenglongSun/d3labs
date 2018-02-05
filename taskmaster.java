@@ -8,7 +8,6 @@ public class TaskMaster {
         int[] b = {2,4,6};
         System.out.println(taskMaster(n, a, b));
     }
-
     public static int taskMaster(int n, int[] a, int[] b) {
         int[] tasks = new int[n + 1];
         int count = n;
