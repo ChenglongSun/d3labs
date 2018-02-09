@@ -1,15 +1,18 @@
 class Solution {
-    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-        if (obstacleGrid[0][0] == 1) return 0;
-        int n = obstacleGrid[0].length;
-        int[] dp = new int[n];
-        dp[0] = 1;
-        for (int[] row : obstacleGrid) {
-            for (int i = 0; i < n; i++) {
-                if (row[i] == 1) dp[i] = 0;
-                else if (i > 0) dp[i] += dp[i - 1];
+    public int minPathSum(int[][] grid) {
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (i == 0 && j == 0) {
+                    grid[i][j] = grid[0][0];
+                } else if (i == 0 && j != 0){
+                    grid[i][j] += grid[i][j - 1];
+                } else if (j == 0 && i != 0) {
+                    grid[i][j] += grid[i - 1][j];
+                } else {
+                    grid[i][j] += Math.min(grid[i][j - 1], grid[i - 1][j]);
+                }
             }
         }
-        return dp[n - 1];
+        return grid[grid.length - 1][grid[0].length - 1];
     }
 }
