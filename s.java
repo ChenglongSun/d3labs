@@ -1,19 +1,17 @@
 class Solution {
-    public int minPathSum(int[][] grid) {
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
-                if (i == 0 && j == 0) {
-                    grid[i][j] = grid[0][0];
-                } else if (i == 0 && j != 0){
-                    grid[i][j] += grid[i][j - 1];
-                } else if (j == 0 && i != 0) {
-                    grid[i][j] += grid[i - 1][j];
-                } else {
-                    grid[i][j] += Math.min(grid[i][j - 1], grid[i - 1][j]);
-                }
+    public int mySqrt(int x) {
+        if (x == 0) return 0;
+        long left = 1, right = x;
+        while (left + 1 < right) {
+            long mid = left + (right - left) / 2;
+            if (mid > x / mid) {
+                right = mid;
+            } else {
+                left = mid;
             }
         }
-        return grid[grid.length - 1][grid[0].length - 1];
+        if (right * right <= x) return(int) right;//
+        return(int)left;
     }
 }
 
