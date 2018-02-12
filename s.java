@@ -1,17 +1,13 @@
-class Solution {
-    public int mySqrt(int x) {
-        if (x == 0) return 0;
-        long left = 1, right = x;
-        while (left + 1 < right) {
-            long mid = left + (right - left) / 2;
-            if (mid > x / mid) {
-                right = mid;
-            } else {
-                left = mid;
-            }
-        }
-        if (right * right <= x) return(int) right;//
-        return(int)left;
-    }
-}
+public String simplifyPath(String path) {
+    Deque<String> stack = new LinkedList<>();
+    Set<String> skip = new HashSet<>(Arrays.asList("..",".",""));
 
+    for (String dir : path.split("/")) {
+        if (dir.equals("..") && !stack.isEmpty()) stack.pop();
+        else if (!skip.contains(dir)) stack.push(dir);
+    }
+
+    String res = "";
+    for (String dir : stack ) res = "/" + dir + res;
+    return res.isEmpty() ? "/" : res;
+}
