@@ -18,6 +18,7 @@ class Solution {
                 raw[s.charAt(end)]++;
             }
             
+            
             if (count == t.length()) {
                 while (target[s.charAt(start)] == 0 || raw[s.charAt(start)] > target[s.charAt(start)]) {
                     if (raw[s.charAt(start)] > target[s.charAt(start)]) {
