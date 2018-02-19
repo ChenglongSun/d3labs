@@ -1,40 +1,20 @@
-class Solution {
-    public String minWindow(String s, String t) {
-        int[] raw = new int[128];
-        int[] target = new int[128];
-        
-        for (int i = 0; i < t.length(); i++) {
-            target[t.charAt(i)]++;
-        }
-        int min = Integer.MAX_VALUE;
-        String res = new String();
-        int count = 0, start = 0, end = 0;
-        
-        while (end < s.length()) {
-            if (target[s.charAt(end)] != 0) {
-                if (raw[s.charAt(end)] < target[s.charAt(end)]) {
-                    count++;
-                }
-                raw[s.charAt(end)]++;
-                
+public class Solution {
+    public boolean exist(char[][] board, String word) {
+        char[] w = word.toCharArray();
+        for (int y = 0; y < board.length; y++) {
+            for (int x = 0; x < board[0].length; x++) {
+                if (exist(board, y, x, w, 0)) return true;
             }
-            
-            
-            if (count == t.length()) {
-                while (target[s.charAt(start)] == 0 || raw[s.charAt(start)] > target[s.charAt(start)]) {
-                    if (raw[s.charAt(start)] > target[s.charAt(start)]) {
-                        raw[s.charAt(start)]--;
-                    }
-                    start++;
-                }
-                
-                if (end - start + 1 < min) {
-                    min = end - start + 1;
-                    res = s.substring(start, end + 1);
-                }
-            }
-            end++;
         }
-        return res;
+        return false;
+    }
+    private boolean exist(char[][] board, int y, int x, char[] word, int i) {
+        if (i == word.length) return true;
+        if (y < 0 || x < 0 || y == board.length || x == board[0].length) return false;
+        if (board[y][x] != word[i]) return false;
+        board[y][x] ^= 256;
+        boolean exist = exist(board, y, x + 1, word, i + 1) || exist(board, y + 1, x, word, i + 1) || exist(board, y, x - 1, word, i + 1) || exist(board, y - 1, x, word, i + 1);
+        board[y][x] ^= 256;
+        return exist;
     }
 }
