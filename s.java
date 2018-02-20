@@ -1,20 +1,29 @@
 public class Solution {
-    public boolean exist(char[][] board, String word) {
-        char[] w = word.toCharArray();
-        for (int y = 0; y < board.length; y++) {
-            for (int x = 0; x < board[0].length; x++) {
-                if (exist(board, y, x, w, 0)) return true;
+    public int findSubstringInWraproundString(String p) {
+        // count[i] is the maximum unique substring end with ith letter.
+        // 0 - 'a', 1 - 'b', ..., 25 - 'z'.
+        int[] count = new int[26];
+        
+        // store longest contiguous substring ends at current position.
+        int maxLengthCur = 0; 
+
+        for (int i = 0; i < p.length(); i++) {
+            if (i > 0 && (p.charAt(i) - p.charAt(i - 1) == 1 || (p.charAt(i - 1) - p.charAt(i) == 25))) {
+                maxLengthCur++;
             }
+            else {
+                maxLengthCur = 1;
+            }
+            
+            int index = p.charAt(i) - 'a';
+            count[index] = Math.max(count[index], maxLengthCur);
         }
-        return false;
-    }
-    private boolean exist(char[][] board, int y, int x, char[] word, int i) {
-        if (i == word.length) return true;
-        if (y < 0 || x < 0 || y == board.length || x == board[0].length) return false;
-        if (board[y][x] != word[i]) return false;
-        board[y][x] ^= 256;
-        boolean exist = exist(board, y, x + 1, word, i + 1) || exist(board, y + 1, x, word, i + 1) || exist(board, y, x - 1, word, i + 1) || exist(board, y - 1, x, word, i + 1);
-        board[y][x] ^= 256;
-        return exist;
+        
+        // Sum to get result
+        int sum = 0;
+        for (int i = 0; i < 26; i++) {
+            sum += count[i];
+        }
+        return sum;
     }
 }
