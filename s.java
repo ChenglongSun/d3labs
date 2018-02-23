@@ -1,32 +1,18 @@
-public class Solution {
-    public boolean search(int[] nums, int target) {
-        if (nums == null || nums.length == 0) {
-            return false;
-        }
-        int start = 0, end = nums.length - 1;
-        while (start < end - 1) {
-            int mid = start + (end - start) / 2;
-            if (nums[mid] == target) {
-                return true;
-            }
-
-
-            if (nums[mid] == nums[end]) { // 增加两个比对
-                end--;
-            } else if (nums[mid] < nums[end]) {
-                if (nums[mid] < target && target <= nums[end]) {
-                    start = mid;
-                } else {
-                    end = mid;
-                }
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        if (nums1 == null || nums2 == null) return;
+        int i = m - 1, j = n - 1, len = m + n - 1;
+        while (i >= 0 && j >= 0) {
+            if (nums1[i] >= nums2[j]) {
+                nums1[len--] = nums1[i--];
             } else {
-                if (nums[start] <= target && target < nums[mid]) {
-                    end = mid;
-                } else {
-                    start = mid;
-                }
+                nums1[len--] = nums2[j--];
             }
         }
-        return nums[start] == target ? true : nums[end] == target;
+        if (j >= 0) {
+            for (; j >= 0; j--) {
+                nums1[j] = nums2[j];
+            }
+        }
     }
 }
