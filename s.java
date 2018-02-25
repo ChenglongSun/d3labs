@@ -1,17 +1,29 @@
-public List<String> restoreIpAddresses(String s) {
-    List<String> solutions = new ArrayList<String>();
-    restoreIp(s, solutions, 0, "", 0);
-    return solutions;
-}
-
-private void restoreIp(String ip, List<String> solutions, int idx, String restored, int count) {
-    if (count > 4) return;
-    if (count == 4 && idx == ip.length()) solutions.add(restored);
-    
-    for (int i=1; i<4; i++) {
-        if (idx+i > ip.length()) break;
-        String s = ip.substring(idx,idx+i);
-        if ((s.startsWith("0") && s.length()>1) || (i==3 && Integer.parseInt(s) >= 256)) continue;
-        restoreIp(ip, solutions, idx+i, restored+s+(count==3?"" : "."), count+1);
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        LinkedList<Integer> res = new LinkedList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        if (root == null) return res;
+        stack.push(root);
+        
+        while (!stack.isEmpty()) {
+            TreeNode cur = stack.pop();
+            res.addFirst(cur.val);
+            if (cur.left != null) {
+                stack.push(cur.left);
+            }
+            if (cur.right != null) {
+                stack.push(cur.right);
+            }
+        }
+        return res;
     }
 }
