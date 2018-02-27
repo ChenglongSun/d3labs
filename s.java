@@ -1,45 +1,18 @@
-public class Solution {
-    public List<TreeNode> generateTrees(int n) {
-        
-        return genTrees(1,n);
+public TreeNode sortedArrayToBST(int[] num) {
+    if (num.length == 0) {
+        return null;
     }
-        
-    public List<TreeNode> genTrees (int start, int end)
-    {
+    TreeNode head = helper(num, 0, num.length - 1);
+    return head;
+}
 
-        List<TreeNode> list = new ArrayList<TreeNode>();
-
-        if(start>end)
-        {
-            list.add(null);
-            return list;
-        }
-        
-        if(start == end){
-            list.add(new TreeNode(start));
-            return list;
-        }
-        
-        List<TreeNode> left,right;
-        for(int i=start;i<=end;i++)
-        {
-            
-            left = genTrees(start, i-1);
-            right = genTrees(i+1,end);
-            
-            for(TreeNode lnode: left)
-            {
-                for(TreeNode rnode: right)
-                {
-                    TreeNode root = new TreeNode(i);
-                    root.left = lnode;
-                    root.right = rnode;
-                    list.add(root);
-                }
-            }
-                
-        }
-        
-        return list;
+public TreeNode helper(int[] num, int low, int high) {
+    if (low > high) { // Done
+        return null;
     }
+    int mid = (low + high) / 2;
+    TreeNode node = new TreeNode(num[mid]);
+    node.left = helper(num, low, mid - 1);
+    node.right = helper(num, mid + 1, high);
+    return node;
 }
