@@ -1,18 +1,20 @@
-public TreeNode sortedArrayToBST(int[] num) {
-    if (num.length == 0) {
-        return null;
+class Solution {
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<List<Integer>> res = new ArrayList<>();
+        helper(root, sum, res, new ArrayList<Integer>());
+        return res;
     }
-    TreeNode head = helper(num, 0, num.length - 1);
-    return head;
-}
-
-public TreeNode helper(int[] num, int low, int high) {
-    if (low > high) { // Done
-        return null;
+    public void helper(TreeNode root, int target, List<List<Integer>> res, List<Integer> temp) {
+        if (root == null) return;
+        temp.add(new Integer(root.val));
+        if (root.left == null && root.right == null && root.val == target) {
+            res.add(new ArrayList(temp));
+            temp.remove(temp.size() - 1);
+            return;
+        } else {
+            helper(root.left, target - root.val, res, temp);
+            helper(root.right, target - root.val, res, temp);
+        }
+        temp.remove(temp.size() - 1);
     }
-    int mid = (low + high) / 2;
-    TreeNode node = new TreeNode(num[mid]);
-    node.left = helper(num, low, mid - 1);
-    node.right = helper(num, mid + 1, high);
-    return node;
 }
