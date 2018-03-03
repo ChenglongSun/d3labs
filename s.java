@@ -1,21 +1,21 @@
 public class Solution {
-    private HashMap<Integer, UndirectedGraphNode> map = new HashMap<>();
-    public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
-        return clone(node);
-    }
-
-    private UndirectedGraphNode clone(UndirectedGraphNode node) {
-        if (node == null) return null;
+    public ListNode detectCycle(ListNode head) {
+        if(head == null || head.next == null) return null;
         
-        if (map.containsKey(node.label)) {
-            return map.get(node.label);
+        ListNode fast = head.next, slow = head;
+        while(fast != slow) {
+            if(fast == null || fast.next == null){
+                return null;
+            }
+            fast = fast.next.next;
+            slow = slow.next;
         }
-        UndirectedGraphNode clone = new UndirectedGraphNode(node.label);
-        map.put(clone.label, clone);
-        for (UndirectedGraphNode neighbor : node.neighbors) {
-            clone.neighbors.add(clone(neighbor));
-        }
-        return clone;
         
+        
+        while(head != slow.next) {
+            head = head.next;
+            slow = slow.next;
+        }
+        return head;
     }
 }
