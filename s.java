@@ -1,21 +1,34 @@
-public class Solution {
-    public ListNode detectCycle(ListNode head) {
-        if(head == null || head.next == null) return null;
-        
-        ListNode fast = head.next, slow = head;
-        while(fast != slow) {
-            if(fast == null || fast.next == null){
-                return null;
-            }
-            fast = fast.next.next;
-            slow = slow.next;
+class MinStack
+{
+    static class Element
+    {
+        final int value;
+        final int min;
+        Element(final int value, final int min)
+        {
+            this.value = value;
+            this.min = min;
         }
-        
-        
-        while(head != slow.next) {
-            head = head.next;
-            slow = slow.next;
-        }
-        return head;
+    }
+    final Stack<Element> stack = new Stack<>();
+
+    public void push(int x) {
+        final int min = (stack.empty()) ? x : Math.min(stack.peek().min, x);
+        stack.push(new Element(x, min));
+    }
+
+    public void pop()
+    {
+        stack.pop();
+    }
+
+    public int top()
+    {
+        return stack.peek().value;
+    }
+
+    public int getMin()
+    {
+        return stack.peek().min;
     }
 }
