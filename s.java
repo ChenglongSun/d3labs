@@ -1,34 +1,44 @@
-class MinStack
-{
-    static class Element
-    {
-        final int value;
-        final int min;
-        Element(final int value, final int min)
-        {
-            this.value = value;
-            this.min = min;
+public class BSTIterator {
+    private Stack<TreeNode> stack;
+    public BSTIterator(TreeNode root) {
+        stack = new Stack<TreeNode>();
+        TreeNode curr = root;
+        while(curr != null) {
+            stack.push(curr);
+            if (curr.left != null) {
+                curr = curr.left;
+            } else {
+                break;
+            }
         }
     }
-    final Stack<Element> stack = new Stack<>();
 
-    public void push(int x) {
-        final int min = (stack.empty()) ? x : Math.min(stack.peek().min, x);
-        stack.push(new Element(x, min));
+    /** @return whether we have a next smallest number */
+    public boolean hasNext() {
+        return !stack.isEmpty();
     }
 
-    public void pop()
-    {
-        stack.pop();
-    }
-
-    public int top()
-    {
-        return stack.peek().value;
-    }
-
-    public int getMin()
-    {
-        return stack.peek().min;
+    /** @return the next smallest number */
+    public int next() {
+        TreeNode node = stack.pop();
+        TreeNode cur = node;
+        if (cur.right != null) {
+            cur = cur.right;
+            while (cur != null) {
+                stack.push(cur);
+                if(cur.left != null) {
+                    cur = cur.left;
+                } else {
+                    break;
+                }
+            }
+        }
+        return node.val;
     }
 }
+
+/**
+ * Your BSTIterator will be called like this:
+ * BSTIterator i = new BSTIterator(root);
+ * while (i.hasNext()) v[f()] = i.next();
+ */
