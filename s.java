@@ -1,39 +1,16 @@
-public class WordDictionary {
-    public class TrieNode {
-        public TrieNode[] children = new TrieNode[26];
-        public String item = "";
+ public int kthSmallest(TreeNode root, int k) {
+        int count = countNodes(root.left);
+        if (k <= count) {
+            return kthSmallest(root.left, k);
+        } else if (k > count + 1) {
+            return kthSmallest(root.right, k-1-count); // 1 is counted as current node
+        }
+        
+        return root.val;
     }
     
-    private TrieNode root = new TrieNode();
-
-    public void addWord(String word) {
-        TrieNode node = root;
-        for (char c : word.toCharArray()) {
-            if (node.children[c - 'a'] == null) {
-                node.children[c - 'a'] = new TrieNode();
-            }
-            node = node.children[c - 'a'];
-        }
-        node.item = word;
+    public int countNodes(TreeNode n) {
+        if (n == null) return 0;
+        
+        return 1 + countNodes(n.left) + countNodes(n.right);
     }
-
-    public boolean search(String word) {
-        return match(word.toCharArray(), 0, root);
-    }
-    
-    private boolean match(char[] chs, int k, TrieNode node) {
-        if (k == chs.length) return !node.item.equals("");   
-        if (chs[k] != '.') {
-            return node.children[chs[k] - 'a'] != null && match(chs, k + 1, node.children[chs[k] - 'a']);
-        } else {
-            for (int i = 0; i < node.children.length; i++) {
-                if (node.children[i] != null) {
-                    if (match(chs, k + 1, node.children[i])) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-}
