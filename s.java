@@ -1,33 +1,27 @@
-public class Solution {
-    public List<Integer> diffWaysToCompute(String input) {
-        List<Integer> ret = new LinkedList<Integer>();
-        for (int i=0; i<input.length(); i++) {
-            if (input.charAt(i) == '-' ||
-                input.charAt(i) == '*' ||
-                input.charAt(i) == '+' ) {
-                String part1 = input.substring(0, i);
-                String part2 = input.substring(i+1);
-                List<Integer> part1Ret = diffWaysToCompute(part1);
-                List<Integer> part2Ret = diffWaysToCompute(part2);
-                for (Integer p1 :   part1Ret) {
-                    for (Integer p2 :   part2Ret) {
-                        int c = 0;
-                        switch (input.charAt(i)) {
-                            case '+': c = p1+p2;
-                                break;
-                            case '-': c = p1-p2;
-                                break;
-                            case '*': c = p1*p2;
-                                break;
-                        }
-                        ret.add(c);
-                    }
-                }
-            }
+class Solution {
+    public boolean validTree(int n, int[][] edges) {
+        // initialize n isolated islands
+        int[] nums = new int[n];
+        Arrays.fill(nums, -1);
+        
+        // perform union find
+        for (int i = 0; i < edges.length; i++) {
+            int x = find(nums, edges[i][0]);
+            int y = find(nums, edges[i][1]);
+            
+            // if two vertices happen to be in the same set
+            // then there's a cycle
+            if (x == y) return false;
+            
+            // union
+            nums[x] = y;
         }
-        if (ret.size() == 0) {
-            ret.add(Integer.valueOf(input));
-        }
-        return ret;
+        
+        return edges.length == n - 1;
+    }
+    
+    int find(int nums[], int i) {
+        if (nums[i] == -1) return i;
+        return find(nums, nums[i]);
     }
 }
