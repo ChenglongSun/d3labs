@@ -17,7 +17,7 @@ public class Solution5 {
 		//K from left to right
 		int[] posLeft = new int[len];
 		for (int i = K, tot = sum[K] - sum[0]; i < len; i++) {
-			if (sum[i + 1 - K] - sum[i + 1] > tot) {
+			if (sum[i + 1 - K] + sum[i + 1] > tot) {
 				posLeft[i] = i + 1 - K;
 				tot = sum[i + 1 - K] - sum[i + 1];
 			} else {
