@@ -1,6 +1,7 @@
 public double[] calcEquation(String[][] equations, double[] values, String[][] queries) {
         HashMap<String, ArrayList<String>> pairs = new HashMap<String, ArrayList<String>>();
         HashMap<String, ArrayList<Double>> valuesPair = new HashMap<String, ArrayList<Double>>();
+        
         for (int i = 0; i < equations.length; i++) {
             String[] equation = equations[i];
             if (!pairs.containsKey(equation[0])) {
