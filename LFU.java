@@ -1,4 +1,17 @@
 public class LFUCache {
+    //设置一个Node类
+    class Node {
+        public int count = 0;
+        public LinkedHashSet<Integer> keys = null;
+        public Node prev = null, next = null;
+        
+        public Node(int count) {
+            this.count = count;
+            keys = new LinkedHashSet<Integer>();
+            prev = next = null;
+        }
+    }
+    
     private Node head = null;
     private int cap = 0;
     private HashMap<Integer, Integer> valueHash = null;
@@ -94,18 +107,6 @@ public class LFUCache {
         } 
         if (node.next != null) {
             node.next.prev = node.prev;
-        }
-    }
-    
-    class Node {
-        public int count = 0;
-        public LinkedHashSet<Integer> keys = null;
-        public Node prev = null, next = null;
-        
-        public Node(int count) {
-            this.count = count;
-            keys = new LinkedHashSet<Integer>();
-            prev = next = null;
         }
     }
 }
