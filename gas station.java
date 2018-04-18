@@ -16,3 +16,4 @@ class Solution {
         return (double)node[0] / node[1];
     }
 }
+
