@@ -1,8 +1,8 @@
 public String encode(String s) {
     String[][] dp = new String[s.length()][s.length()];
     
-    for(int l=0;l<s.length();l++) {
-        for(int i=0;i<s.length()-l;i++) {
+    for(int l=0;l<s.length();l++) {  //l++
+        for(int i=0;i<s.length()-l;i++) {  //i < s.length() - l????
             int j = i+l;
             String substr = s.substring(i, j+1);
             // Checking if string length < 5. In that case, we know that encoding will not help.
@@ -16,6 +16,7 @@ public String encode(String s) {
                         dp[i][j] = dp[i][k] + dp[k+1][j];
                     }
                 }
+                
                 
                 // Loop for checking if string can itself found some pattern in it which could be repeated.
                 for(int k=0;k<substr.length();k++) {
