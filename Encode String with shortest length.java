@@ -17,6 +17,7 @@ public String encode(String s) {
                     }
                 }
                 
+                
                 // Loop for checking if string can itself found some pattern in it which could be repeated.
                 for(int k=0;k<substr.length();k++) {
                     String repeatStr = substr.substring(0, k+1);
