@@ -28,6 +28,7 @@ public void update(int row, int col, int val) {
     matrix[row][col] = val;//最后更新一下修改后的matrix[row][col]
 }
 
+
 //time complexity for the worst case scenario: O(n)
 public int sumRegion(int row1, int col1, int row2, int col2) {
     int ret = 0;
