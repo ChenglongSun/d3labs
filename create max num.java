@@ -1,8 +1,7 @@
 class Solution {
     public int[] maxNumber(int[] nums1, int[] nums2, int k) {
         int[] best = new int[0];
-        for (int i = Math.max(0, k - nums2.length); 
-                 i <= Math.min(k, nums1.length); ++i)            
+        for (int i = Math.max(0, k - nums2.length); i <= Math.min(k, nums1.length); ++i)            
             best = max(best, 0, 
                        maxNumber(maxNumber(nums1, i), 
                                  maxNumber(nums2, k - i)), 0);
@@ -20,6 +19,7 @@ class Solution {
         }        
         return ans;
     }
+    
     
     private int[] maxNumber(int[] nums1, int[] nums2) {
         int[] ans = new int[nums1.length + nums2.length];
