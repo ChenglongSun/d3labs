@@ -20,7 +20,6 @@ class Solution {
         return ans;
     }
     
-    
     private int[] maxNumber(int[] nums1, int[] nums2) {
         int[] ans = new int[nums1.length + nums2.length];
         int s1 = 0;
