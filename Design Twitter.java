@@ -18,7 +18,6 @@ public class Twitter {
         }
     }
     
-    
     // OO design so User can follow, unfollow and post itself
     public class User{
         public int id;
@@ -64,10 +63,8 @@ public class Twitter {
             userMap.put(userId, u);
         }
         userMap.get(userId).post(tweetId);
-            
     }
     
-
     
     // Best part of this.
     // first get all tweets lists from one user including itself and all people it followed.
