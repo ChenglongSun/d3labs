@@ -4,6 +4,7 @@ class MyCalendar {
     public MyCalendar() {
         calendar = new TreeMap<>();
     }
+    
     public boolean book(int start, int end) {
         Integer floorKey = calendar.floorKey(start);
         if (floorKey != null && calendar.get(floorKey) > start) return false;
