@@ -1,4 +1,5 @@
 public class Solution {
+    
     public class Cell {
         int row;
         int col;
