@@ -1,6 +1,5 @@
 public class Twitter {
     private static int timeStamp=0;
-    
     // easy to find if user exist
     private Map<Integer, User> userMap;
     
