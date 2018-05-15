@@ -19,6 +19,7 @@ public class Twitter {
     
     // OO design so User can follow, unfollow and post itself
     public class User{
+        
         public int id;
         public Set<Integer> followed;
         public Tweet tweet_head;
