@@ -4,6 +4,7 @@ class Solution {
         if (root != null) dfs(root);
         return res;
     }
+    
     private int dfs(TreeNode node) {
         int l = node.left != null ? dfs(node.left) : 0; // Longest-Univalue-Path-Start-At - left child
         int r = node.right != null ? dfs(node.right) : 0; // Longest-Univalue-Path-Start-At - right child
