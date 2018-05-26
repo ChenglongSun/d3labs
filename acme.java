@@ -7,6 +7,7 @@ public class AcmeSubstring {
         String x = "th*s";
         System.out.println(acme(a, x));
     }
+    
     public static int acme(String a, String x) {
         for (int i = 0; ;i++) {
             for (int j = 0; ;j++) {
