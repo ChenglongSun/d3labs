@@ -17,6 +17,7 @@ class Solution {
             }
             return;
         }
+        
         String reversed = new StringBuilder(s).reverse().toString();
         if (par[0] == '(') remove (reversed, ans, 0, 0, new char[]{')', '('});
         else ans.add(reversed);
