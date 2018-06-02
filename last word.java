@@ -1,5 +1,6 @@
 class Solution {
     public int lengthOfLastWord(String s) {
+    	
     	if(s == null)
     		return 0;
 
