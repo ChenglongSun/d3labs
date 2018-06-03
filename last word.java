@@ -5,5 +5,6 @@ class Solution {
     		return 0;
 
     	return s.trim().length() - s.trim().lastIndexOf(' ') - 1;
+    	
     }
 }
