@@ -1,6 +1,7 @@
 class Solution {
     public String nextClosestTime(String time) {
         int[] raw = new int[4];
+        
         raw[0] = time.charAt(0) - '0';
         raw[1] = time.charAt(1) - '0';
         raw[2] = time.charAt(3) - '0';
