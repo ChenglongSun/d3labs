@@ -26,6 +26,7 @@ class Solution {
                 }
             }
         }
+        
         return "" + num[0] + num[0] + ':' + num[0] + num[0];
     }
 }
